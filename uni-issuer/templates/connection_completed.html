@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3>Connection completed with state active!</h3>
+
+<div class="container">
+    <pre><code id="json-container"></code></pre>
+    <script>
+        const jsonfile = JSON.parse({{ conn|tojson }});
+      document.getElementById('json-container').innerHTML = JSON.stringify(jsonfile, null, 2);
+    </script>
+</div>
+
+{% endblock %}
+

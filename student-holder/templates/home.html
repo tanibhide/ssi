@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<form action="{{ url_for('receive_invitation') }}" method="POST">
+    <p><label for="invitation_object">Invitation object:</label></p>
+    <textarea id="invitation_object" name="invitation_object" rows="4" cols="50">
+        Paste invitation json here</textarea>
+    <br>
+    <input type="submit" value="Receive Connect Invitation">
+</form>
+
+{% endblock %}
+

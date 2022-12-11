@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h3>Requested proof predicate:</h3>
+    <b>Name: {{ resp['by_format']['pres_request']['indy']['name'] }}</b>
+    <br>
+    <b>
+    {{ resp['by_format']['pres_request']['indy']['requested_predicates']['0_age_GE_uuid']['name'] }}
+
+    {{ resp['by_format']['pres_request']['indy']['requested_predicates']['0_age_GE_uuid']['p_type'] }}
+
+    {{ resp['by_format']['pres_request']['indy']['requested_predicates']['0_age_GE_uuid']['p_value'] }}
+    </b>
+</div>
+
+<h3>State: {{  resp['state'] }}</h3>
+<h4>Age proof verified: {{ resp['verified'] }}</h4>
+
+<h3>Revealed attributes:</h3>
+
+<div class="container">
+    Name: {{ resp['by_format']['pres']['indy']['requested_proof']['revealed_attrs']['0_name_uuid']['raw'] }}
+    <br>
+    Degree: {{ resp['by_format']['pres']['indy']['requested_proof']['revealed_attrs']['0_degree_uuid']['raw'] }}
+    <br>
+    Score: {{ resp['by_format']['pres']['indy']['requested_proof']['revealed_attrs']['0_score_uuid']['raw'] }}
+</div>
+
+<h3>Raw response:</h3>
+
+<div class="container">
+    <pre><code id="json-container"></code></pre>
+    <script>
+        // const jsonfile = JSON.parse({{ resp|tojson }});
+      document.getElementById('json-container').innerHTML = JSON.stringify({{ resp|tojson }}, null, 2);
+    </script>
+</div>
+
+
+{% endblock %}

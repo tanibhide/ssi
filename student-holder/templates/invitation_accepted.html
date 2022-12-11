@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3>Connection stored in wallet: {{ connection_id }}</h3>
+
+<h3>Invitation accepted result: </h3>
+
+<div class="container">
+    <pre><code id="json-container"></code></pre>
+    <script>
+        const jsonfile = JSON.parse({{accept_invitation_result|tojson}});
+      document.getElementById('json-container').innerHTML = JSON.stringify(jsonfile, null, 2);
+    </script>
+</div>
+
+<!--<form action="{{ url_for('verify_active_connection') }}" method="POST">-->
+<!--    <input type="submit" value="Verify active connection in Wallet">-->
+<!--</form>-->
+
+{% endblock %}

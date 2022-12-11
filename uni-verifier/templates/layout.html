@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Verifier University</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+	<body class="loggedin">
+		<nav class="navtop">
+			<div>
+				<h1>SSI Demo: Verifier University</h1>
+				<a href="{{ url_for('home') }}"><i class="fas fa-home"></i>Home</a>
+				<a href="{{ url_for('active_connections') }}"><i class="fas fa-home"></i>Active Connections</a>
+<!--				<a href="{{ url_for('issue_credential_to_student') }}"><i class="fas fa-home"></i>Issue Credential</a>-->
+
+				<a href="{{ url_for('reset') }}"
+					onclick="return confirm('Are you sure you want to reset?')";>
+					<i class="fas fa-home"></i>Reset
+				</a>
+
+			</div>
+		</nav>
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>

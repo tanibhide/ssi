@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<form action="{{ url_for('create_invitation') }}" method="POST">
+    <br>
+    <input type="submit" value="Create Invitation">
+</form>
+
+
+{% endblock %}
+

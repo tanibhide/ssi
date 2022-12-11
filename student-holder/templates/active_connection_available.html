@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3>Active connection available in wallet: </h3>
+
+<div class="container">
+    <pre><code id="json-container"></code></pre>
+    <script>
+        const jsonfile = JSON.parse({{conn|tojson}});
+      document.getElementById('json-container').innerHTML = JSON.stringify(jsonfile, null, 2);
+    </script>
+</div>
+
+{% endblock %}

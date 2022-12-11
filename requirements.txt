@@ -1,0 +1,5 @@
+flask
+aiohttp
+argparse
+prompt_toolkit
+requests

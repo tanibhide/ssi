@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3>Connections in wallet:</h3>
+
+{% for conn in conns %}
+    <div class="container_{{conn['connection_id']}}">
+        <pre><code id="json-container_{{conn['connection_id']}}"></code></pre>
+        <script>
+            // const jsonfile = JSON.parse({{ conn|tojson }});
+          document.getElementById("json-container_{{conn['connection_id']}}").innerHTML = JSON.stringify({{ conn|tojson }}, null, 2 );
+
+            // JSON.stringify({{conn}}, null, 2);
+        </script>
+
+        <form action="{{ url_for('issue_proof_request') }}" method="POST">
+            <input type="hidden" id="connection_id" name="connection_id" value="{{ conn['connection_id'] }}">
+            <input type="submit" value="Issue Proof Request">
+        </form>
+    </div>
+
+{% endfor %}
+
+{% endblock %}

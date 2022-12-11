@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3>Connections in wallet:</h3>
+
+{% for conn in conns %}
+    <div class="container_{{conn['connection_id']}}">
+        <pre><code id="json-container_{{conn['connection_id']}}"></code></pre>
+        <script>
+            // const jsonfile = JSON.parse({{ conn|tojson }});
+          document.getElementById("json-container_{{conn['connection_id']}}").innerHTML = JSON.stringify({{ conn|tojson }}, null, 2 );
+
+            // JSON.stringify({{conn}}, null, 2);
+        </script>
+    </div>
+
+
+{% endfor %}
+
+<h3>Credentials issued in wallet:</h3>
+
+{% for record in records %}
+    {% if record['cred_ex_record']['state'] == "done" %}
+    <div class="container_{{ record['indy']['cred_ex_id'] }}">
+        <h4>cred_ex_id: {{ record['indy']['cred_ex_id'] }}</h4>
+        <table>
+            <thead>
+                <tr>
+                    {% for attrib in record['cred_ex_record']['cred_offer']['credential_preview']['attributes'] %}
+                        <td>{{ attrib['name'] }}</td>
+                    {% endfor %}
+                    <td>State</td>
+                </tr>
+            </thead>
+            <tbody>
+            <thead>
+                <tr>
+                    {% for attrib in record['cred_ex_record']['cred_offer']['credential_preview']['attributes'] %}
+                        <td>{{ attrib['value'] }}</td>
+                    {% endfor %}
+                    <td>{{ record['cred_ex_record']['state'] }}</td>
+                </tr>
+            </thead>
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}

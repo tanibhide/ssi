@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3>Invitation created</h3>
+
+<h3>connection_id: {{ response['connection_id'] }}</h3>
+
+<h3>Invitation block: </h3>
+
+<div class="container">
+    <pre><code id="json-container"></code></pre>
+    <script>
+        const jsonfile = JSON.parse({{ response['invitation']|tojson }});
+      document.getElementById('json-container').innerHTML = JSON.stringify(jsonfile, null, 2);
+    </script>
+</div>
+
+
+<form action="{{ url_for('complete_connection_to_student') }}" method="POST">
+    <input type="submit" value="Complete Connection to Student">
+</form>
+
+
+{% endblock %}
